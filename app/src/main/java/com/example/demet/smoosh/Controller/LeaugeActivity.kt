@@ -2,6 +2,7 @@ package com.example.demet.smoosh.Controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Toast
 import com.example.demet.smoosh.R
@@ -11,12 +12,25 @@ import kotlinx.android.synthetic.main.activity_leauge.*
 
 class LeaugeActivity : BaseActivity() {
 
+
     var selectedLeauge = ""
     var player = Player("","")
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leauge)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null){
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
     }
 
     fun onMensClicked(view : View){
