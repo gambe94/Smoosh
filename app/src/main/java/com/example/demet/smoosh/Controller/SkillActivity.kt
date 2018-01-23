@@ -4,37 +4,36 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.demet.smoosh.Utilities.EXTRA_LEAUGE
 import com.example.demet.smoosh.R
-import com.example.demet.smoosh.Utilities.EXTRA_Skill
+import com.example.demet.smoosh.Utilities.EXTRA_PLAYER
+import com.example.demet.smoosh.model.Player
 import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : BaseActivity() {
 
-     var leauge = ""
-    var skill = ""
+    lateinit var player :Player
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-        leauge = intent.getStringExtra(EXTRA_LEAUGE)
+        player = intent.getParcelableExtra(EXTRA_PLAYER);
     }
 
     fun onbeginnerClicked(view : View){
         ballerSkilledBtn.isChecked = false;
-        skill = "beginner"
+        player.skill = "beginner"
     }
     fun onballerClicked(view : View){
         beginnerSkilledBtn.isChecked = false;
-        skill = "baller"
+        player.skill = "baller"
 
     }
 
 
     fun onclickedFinishedClicked(view : View){
-        if(skill != "") {
+        if(player.skill != "") {
             val finishActivity = Intent(this, FinishActivity::class.java)
-            finishActivity.putExtra(EXTRA_LEAUGE, leauge)
-            finishActivity.putExtra(EXTRA_Skill, skill)
+            finishActivity.putExtra(EXTRA_PLAYER, player);
             startActivity(finishActivity)
         }else{
 

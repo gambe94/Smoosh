@@ -4,13 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.demet.smoosh.Utilities.EXTRA_LEAUGE
 import com.example.demet.smoosh.R
+import com.example.demet.smoosh.Utilities.EXTRA_PLAYER
+import com.example.demet.smoosh.model.Player
 import kotlinx.android.synthetic.main.activity_leauge.*
 
 class LeaugeActivity : BaseActivity() {
 
     var selectedLeauge = ""
+    var player = Player("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,25 +23,25 @@ class LeaugeActivity : BaseActivity() {
         womeLeaugeBtn.isChecked = false
         coedLeaugeBtn.isChecked = false
 
-        selectedLeauge = "mens"
+        player.leauge = "mens"
     }
 
     fun onWomensClicked(view: View){
         mensLeaugeBtn.isChecked = false
         coedLeaugeBtn.isChecked = false
 
-        selectedLeauge = "womens"
+        player.leauge = "womens"
     }
     fun onCoedClicked(view: View){
         mensLeaugeBtn.isChecked = false
         womeLeaugeBtn.isChecked = false
-        selectedLeauge = "co-ed"
+        player.leauge = "co-ed"
     }
 
     fun leaugeNextClicked(view: View){
-        if(selectedLeauge != "") {
+        if(  player.leauge != "") {
             val skilIntent = Intent(this, SkillActivity::class.java)
-            skilIntent.putExtra(EXTRA_LEAUGE, selectedLeauge)
+            skilIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(skilIntent)
         }else{
             Toast.makeText(this,"Choose a leauge", Toast.LENGTH_SHORT)
