@@ -1,9 +1,11 @@
-package com.example.demet.smoosh
+package com.example.demet.smoosh.Controller
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.demet.smoosh.Utilities.EXTRA_LEAUGE
+import com.example.demet.smoosh.R
 import kotlinx.android.synthetic.main.activity_leauge.*
 
 class LeaugeActivity : BaseActivity() {

@@ -1,4 +1,4 @@
-package com.example.demet.smoosh
+package com.example.demet.smoosh.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
